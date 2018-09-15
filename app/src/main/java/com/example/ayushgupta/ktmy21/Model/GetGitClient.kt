@@ -7,13 +7,12 @@ import com.example.ayushgupta.ktmy21.type.CustomType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.net.URI
-import java.net.URL
 
 class GetGitClient {
     fun getApolloClient(): ApolloClient {
         val stringUrl = "https://api.github.com/graphql"
         val log = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        val token = "db99a2ddb9813f29fe8a92cecdaa98f09be46c93"
+        val token = "YOUR_TOKEN"
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(log)
                 .addInterceptor{
@@ -29,7 +28,7 @@ class GetGitClient {
                 .okHttpClient(okHttpClient)
                 .addCustomTypeAdapter(CustomType.URI, object: CustomTypeAdapter<URI> {
                     override fun encode(value: URI): CustomTypeValue<*> {
-                        return CustomTypeValue.GraphQLString(value.toURL().toString())
+                        return CustomTypeValue.GraphQLString(value.toString())
                     }
 
                     override fun decode(value: CustomTypeValue<*>): URI {
