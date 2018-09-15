@@ -1,0 +1,8 @@
+query ForGitQuery($owner:String!,$name:String!){
+  repository(owner:$owner, name:$name) {
+    name
+    description
+    forkCount
+    url
+  }
+}
